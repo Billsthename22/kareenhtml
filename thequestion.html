@@ -1,331 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Forever Question</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #fff0f5;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
- 
-      text-align: center;
-      position: relative;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Forever Question</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #fff0f5;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
 
-    #proposal, #promise-section {
-      background: #fff;
-      padding: 3rem;
-      border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-      border: 2px solid #ffc0cb;
-      z-index: 2;
-      position: relative;
-      max-width: 400px;
-      width: 90%;
-    }
-
-    h2 {
-      font-size: 2.5rem;
-      color: #d63384;
-      margin-bottom: 1rem;
-      font-family: 'Playfair Display', serif;
-    }
-
-    p {
-      font-size: 1.2rem;
-      margin: 1rem 0;
-      color: #333;
-      line-height: 1.5;
-    }
-
-    button {
-      font-size: 1rem;
-      padding: 0.8rem 1.5rem;
-      margin: 0.5rem;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      user-select: none;
-    }
-
-    .yes-btn {
-      background-color: #ff69b4;
-      color: white;
-    }
-
-    .yes-btn:hover {
-      background-color: #ff1493;
-    }
-
-    .no-btn {
-      background-color: #eee;
-      color: #333;
-      position: relative;
-    }
-
-    .hearts-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-
-    .heart {
-      position: absolute;
-      color: #ff6b81;
-      font-size: 1.8rem;
-      animation: floatHeart 6s linear infinite;
-      opacity: 0.7;
-    }
-
-    @keyframes floatHeart {
-      0% { transform: translateY(100vh) scale(1); opacity: 0; }
-      50% { opacity: 1; }
-      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
-    }
-
-    .sparkle {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #ff69b4, #ffffff);
-      pointer-events: none;
-      opacity: 0.8;
-      animation: sparkleFade 1s ease-out forwards;
-      z-index: 10;
-    }
-
-    @keyframes sparkleFade {
-      0% { transform: scale(1.5); opacity: 1; }
-      100% { transform: scale(0); opacity: 0; }
-    }
-
-    #promise-section {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    #user-message {
-      width: 100%;
-      padding: 0.7rem;
-      font-size: 1rem;
-      margin-top: 1rem;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-    }
-
-    #i-love-you {
-      font-weight: bold;
-      color: #d63384;
-      margin-top: 1rem;
-    }
-
-    #send-btn {
-      margin-top: 1rem;
-      background-color: #ff69b4;
-      color: white;
-    }
-
-    @media only screen and (max-width: 414px) {
-      #proposal, #promise-section {
-        max-width: 95%;
-        padding: 2rem;
-      }
-      h2 { font-size: 2rem; }
-      p { font-size: 1rem; }
-      button { font-size: 0.9rem; }
-    }
-  </style>
-</head>
-<body>
-
-  <audio id="bg-music" autoplay loop muted>
-    <source src="love-romantic-hopeful-music-333017.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
-
-  <div class="hearts-container">
-    <span class="heart" style="left: 10%; animation-delay: 0s;">❤️</span>
-    <span class="heart" style="left: 25%; animation-delay: 2s;">💕</span>
-    <span class="heart" style="left: 40%; animation-delay: 1s;">💖</span>
-    <span class="heart" style="left: 60%; animation-delay: 3s;">❤️</span>
-    <span class="heart" style="left: 75%; animation-delay: 1.5s;">💞</span>
-    <span class="heart" style="left: 85%; animation-delay: 2.5s;">💘</span>
-    <span class="heart" style="left: 5%; animation-delay: 1s;">💕</span>
-    <span class="heart" style="left: 50%; animation-delay: 2s;">❤️</span>
-    <span class="heart" style="left: 70%; animation-delay: 0.5s;">💖</span>
-    <span class="heart" style="left: 30%; animation-delay: 3s;">💘</span>
-  </div>
-
-  <section id="proposal">
-    <h2>The Question</h2>
-    <p id="typewriter"></p>
-    <button class="yes-btn" id="yes-btn">Yes 💖</button>
-    <button class="no-btn" id="no-btn">No 😅</button>
-  </section>
-
-  <section id="promise-section">
-    <h2>My Little Promise to You</h2>
-    <p>
-      I may not have the perfect words all the time, but I promise my actions will always speak love.
-    </p>
-    <p>
-      I promise to be your safe place—where you can laugh loud, dream big, cry freely, and just be yourself.
-    </p>
-    <p>
-      I promise to listen, not just to your words, but to the feelings behind them. To stand by you, not only on the bright days, but especially on the grey ones.
-    </p>
-    <p>
-      I promise to celebrate your wins like they’re my own, and hold your hand through every loss.
-    </p>
-    <p>
-      To grow with you, learn with you, and never stop choosing you—every single day.
-    </p>
-    <p>
-      This is my little promise to you: To love you truly, gently, and endlessly. No games. No guessing. Just us.
-    </p>
-*type your response below*
-    <input type="text" id="user-message" placeholder="Do you have anything you want to tell me?"/>
-    <p id="i-love-you">I love you Keren ❤️</p>
-    <button id="send-btn">Send</button>
-  </section>
-
-  <canvas id="fireworks" style="position: fixed; top:0; left:0; pointer-events:none; z-index:1;"></canvas>
-
-  <script>
-    const message = "Will you be my Girlfriend?";
-    let index = 0;
-
-    function typeWriter() {
-      if (index < message.length) {
-        document.getElementById("typewriter").innerHTML += message.charAt(index);
-        index++;
-        setTimeout(typeWriter, 70);
-      }
-    }
-    typeWriter();
-
-    document.getElementById("no-btn").addEventListener("mouseover", (e) => {
-      const offsetX = Math.random() * 200 - 100;
-      const offsetY = Math.random() * 200 - 100;
-      e.target.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-    });
-
-    document.getElementById("yes-btn").addEventListener("click", () => {
-      launchFireworks();
-      document.getElementById("proposal").style.display = "none";
-      document.getElementById("promise-section").style.display = "flex";
-
-      fetch("https://her-response.onrender.com/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          subject: "She said YES 💖!",
-          message: "She said yes to your proposal. Congrats 🎉🎉!"
-        })
-      }).catch(err => console.error('Email error:', err));
-    });
-
-    document.getElementById("send-btn").addEventListener("click", () => {
-      const userMessage = document.getElementById("user-message").value.trim();
-
-      if (!userMessage) {
-        alert("Please write something first 💌");
-        return;
+        text-align: center;
+        position: relative;
       }
 
-      fetch("http://localhost:3000/send-user-message", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userMessage })
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.message) {
-          alert("Your message has been sent ❤️");
-        } else {
-          alert("Something went wrong. Try again later.");
+      #proposal,
+      #promise-section {
+        background: #fff;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        border: 2px solid #ffc0cb;
+        z-index: 2;
+        position: relative;
+        max-width: 400px;
+        width: 90%;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        color: #d63384;
+        margin-bottom: 1rem;
+        font-family: "Playfair Display", serif;
+      }
+
+      p {
+        font-size: 1.2rem;
+        margin: 1rem 0;
+        color: #333;
+        line-height: 1.5;
+      }
+
+      button {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+        margin: 0.5rem;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        user-select: none;
+      }
+
+      .yes-btn {
+        background-color: #ff69b4;
+        color: white;
+      }
+
+      .yes-btn:hover {
+        background-color: #ff1493;
+      }
+
+      .no-btn {
+        background-color: #eee;
+        color: #333;
+        position: relative;
+      }
+
+      .hearts-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .heart {
+        position: absolute;
+        color: #ff6b81;
+        font-size: 1.8rem;
+        animation: floatHeart 6s linear infinite;
+        opacity: 0.7;
+      }
+
+      @keyframes floatHeart {
+        0% {
+          transform: translateY(100vh) scale(1);
+          opacity: 0;
         }
-      })
-      .catch(err => {
-        console.error(err);
-        alert("There was an error. Please check the console.");
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-10vh) scale(1.2);
+          opacity: 0;
+        }
+      }
+
+      .sparkle {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #ff69b4, #ffffff);
+        pointer-events: none;
+        opacity: 0.8;
+        animation: sparkleFade 1s ease-out forwards;
+        z-index: 10;
+      }
+
+      @keyframes sparkleFade {
+        0% {
+          transform: scale(1.5);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(0);
+          opacity: 0;
+        }
+      }
+
+      #promise-section {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #user-message {
+        width: 100%;
+        padding: 0.7rem;
+        font-size: 1rem;
+        margin-top: 1rem;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+      }
+
+      #i-love-you {
+        font-weight: bold;
+        color: #d63384;
+        margin-top: 1rem;
+      }
+
+      #send-btn {
+        margin-top: 1rem;
+        background-color: #ff69b4;
+        color: white;
+      }
+
+      @media only screen and (max-width: 414px) {
+        #proposal,
+        #promise-section {
+          max-width: 95%;
+          padding: 2rem;
+        }
+        h2 {
+          font-size: 2rem;
+        }
+        p {
+          font-size: 1rem;
+        }
+        button {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <audio id="bg-music" autoplay loop muted>
+      <source src="love-romantic-hopeful-music-333017.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="hearts-container">
+      <span class="heart" style="left: 10%; animation-delay: 0s">❤️</span>
+      <span class="heart" style="left: 25%; animation-delay: 2s">💕</span>
+      <span class="heart" style="left: 40%; animation-delay: 1s">💖</span>
+      <span class="heart" style="left: 60%; animation-delay: 3s">❤️</span>
+      <span class="heart" style="left: 75%; animation-delay: 1.5s">💞</span>
+      <span class="heart" style="left: 85%; animation-delay: 2.5s">💘</span>
+      <span class="heart" style="left: 5%; animation-delay: 1s">💕</span>
+      <span class="heart" style="left: 50%; animation-delay: 2s">❤️</span>
+      <span class="heart" style="left: 70%; animation-delay: 0.5s">💖</span>
+      <span class="heart" style="left: 30%; animation-delay: 3s">💘</span>
+    </div>
+
+    <section id="proposal">
+      <h2>The Question</h2>
+      <p id="typewriter"></p>
+      <button class="yes-btn" id="yes-btn">Yes 💖</button>
+      <button class="no-btn" id="no-btn">No 😅</button>
+    </section>
+
+    <section id="promise-section">
+      <h2>My Little Promise to You</h2>
+      <p>
+        I may not have the perfect words all the time, but I promise my actions
+        will always speak love.
+      </p>
+      <p>
+        I promise to be your safe place—where you can laugh loud, dream big, cry
+        freely, and just be yourself.
+      </p>
+      <p>
+        I promise to listen, not just to your words, but to the feelings behind
+        them. To stand by you, not only on the bright days, but especially on
+        the grey ones.
+      </p>
+      <p>
+        I promise to celebrate your wins like they’re my own, and hold your hand
+        through every loss.
+      </p>
+      <p>
+        To grow with you, learn with you, and never stop choosing you—every
+        single day.
+      </p>
+      <p>
+        This is my little promise to you: To love you truly, gently, and
+        endlessly. No games. No guessing. Just us.
+      </p>
+      *type your response below*
+      <input
+        type="text"
+        id="user-message"
+        placeholder="Do you have anything you want to tell me?"
+      />
+      <p id="i-love-you">I love you Keren ❤️</p>
+      <button id="send-btn">Send</button>
+    </section>
+
+    <canvas
+      id="fireworks"
+      style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 1"
+    ></canvas>
+
+    <script>
+      const message = "Will you be my Girlfriend?";
+      let index = 0;
+
+      function typeWriter() {
+        if (index < message.length) {
+          document.getElementById("typewriter").innerHTML +=
+            message.charAt(index);
+          index++;
+          setTimeout(typeWriter, 70);
+        }
+      }
+      typeWriter();
+
+      document.getElementById("no-btn").addEventListener("mouseover", (e) => {
+        const offsetX = Math.random() * 200 - 100;
+        const offsetY = Math.random() * 200 - 100;
+        e.target.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
       });
-    });
 
-    const canvas = document.getElementById("fireworks");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    const particles = [];
+      document.getElementById("yes-btn").addEventListener("click", () => {
+        launchFireworks();
+        document.getElementById("proposal").style.display = "none";
+        document.getElementById("promise-section").style.display = "flex";
 
-    function createExplosion(x, y) {
-      const colors = ['#ff3cac', '#ffc93c', '#6effd3', '#4d4ae8', '#ff6b81'];
-      for (let i = 0; i < 50; i++) {
-        particles.push({
-          x, y,
-          radius: Math.random() * 3 + 1,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          speedX: Math.random() * 6 - 3,
-          speedY: Math.random() * 6 - 3,
-          alpha: 1
-        });
-      }
-    }
+        fetch("https://her-response.onrender.com/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            subject: "She said YES 💖!",
+            message: "She said yes to your proposal. Congrats 🎉🎉!",
+          }),
+        }).catch((err) => console.error("Email error:", err));
+      });
 
-    function launchFireworks() {
-      for (let i = 0; i < 5; i++) {
-        setTimeout(() => {
-          createExplosion(Math.random() * canvas.width, Math.random() * canvas.height / 2);
-        }, i * 300);
-      }
-      animate();
-    }
+      document.getElementById("send-btn").addEventListener("click", () => {
+        const userMessage = document
+          .getElementById("user-message")
+          .value.trim();
 
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = particles.length - 1; i >= 0; i--) {
-        const p = particles[i];
-        p.x += p.speedX;
-        p.y += p.speedY;
-        p.alpha -= 0.02;
-        if (p.alpha <= 0) {
-          particles.splice(i, 1);
-          continue;
+        if (!userMessage) {
+          alert("Please write something first 💌");
+          return;
         }
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${hexToRgb(p.color)},${p.alpha})`;
-        ctx.fill();
-      }
-      if (particles.length > 0) {
-        requestAnimationFrame(animate);
-      }
-    }
 
-    function hexToRgb(hex) {
-      const bigint = parseInt(hex.replace('#',''), 16);
-      const r = (bigint >> 16) & 255;
-      const g = (bigint >> 8) & 255;
-      const b = bigint & 255;
-      return `${r},${g},${b}`;
-    }
-  </script>
+        fetch("https://her-response.onrender.com/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            subject: "She sent a Message",
+            message: userMessage,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.message) {
+              alert("Your message has been sent ❤️");
+            } else {
+              alert("Something went wrong. Try again later.");
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            alert("There was an error. Please check the console.");
+          });
+      });
 
-</body>
+      const canvas = document.getElementById("fireworks");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const particles = [];
+
+      function createExplosion(x, y) {
+        const colors = ["#ff3cac", "#ffc93c", "#6effd3", "#4d4ae8", "#ff6b81"];
+        for (let i = 0; i < 50; i++) {
+          particles.push({
+            x,
+            y,
+            radius: Math.random() * 3 + 1,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            speedX: Math.random() * 6 - 3,
+            speedY: Math.random() * 6 - 3,
+            alpha: 1,
+          });
+        }
+      }
+
+      function launchFireworks() {
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+            createExplosion(
+              Math.random() * canvas.width,
+              (Math.random() * canvas.height) / 2
+            );
+          }, i * 300);
+        }
+        animate();
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.speedX;
+          p.y += p.speedY;
+          p.alpha -= 0.02;
+          if (p.alpha <= 0) {
+            particles.splice(i, 1);
+            continue;
+          }
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${hexToRgb(p.color)},${p.alpha})`;
+          ctx.fill();
+        }
+        if (particles.length > 0) {
+          requestAnimationFrame(animate);
+        }
+      }
+
+      function hexToRgb(hex) {
+        const bigint = parseInt(hex.replace("#", ""), 16);
+        const r = (bigint >> 16) & 255;
+        const g = (bigint >> 8) & 255;
+        const b = bigint & 255;
+        return `${r},${g},${b}`;
+      }
+    </script>
+  </body>
 </html>
