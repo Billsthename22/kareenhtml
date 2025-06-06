@@ -1,0 +1,240 @@
+body {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  background-color: #fff7fb;
+  color: #3b3b3b;
+}
+
+.magazine-page {
+  display: none;
+  padding: 50px 30px;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.magazine-page.active {
+  display: block;
+}
+
+h1.magazine-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  margin-bottom: 0.2em;
+}
+
+.magazine-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 1.5em;
+}
+
+.contents-list {
+  list-style: none;
+  padding: 0;
+  font-size: 1.1rem;
+}
+
+.contents-list li {
+  margin: 10px 0;
+  cursor: pointer;
+  color: #e91e63;
+  font-weight: bold;
+}
+
+.magazine-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+blockquote {
+  font-style: italic;
+  color: #d81b60;
+  border-left: 4px solid #d81b60;
+  padding-left: 15px;
+  margin: 10px 0;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d81b60;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.gallery img {
+  width: 200px;
+  border-radius: 10px;
+}
+
+.scroll-letter {
+  max-width: 600px;
+  margin: 0 auto;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.yes-btn {
+  background-color: #4caf50;
+}
+
+.no-btn {
+  background-color: #f44336;
+  position: relative;
+}
+
+#love-message {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #e91e63;
+}
+
+
+#cover {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+#cover-bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+
+.cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+
+.centered {
+  position: relative;
+  z-index: 2;
+}
+
+
+.magazine-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: fadeInUp 1s forwards;
+}
+
+.magazine-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeInUp 1s 0.3s forwards;
+}
+
+/* Button Styling */
+#cover button {
+  padding: 12px 28px;
+  background: #ff3366;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(255, 51, 102, 0.4);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  opacity: 0;
+  animation: fadeInUp 1s 0.6s forwards;
+}
+
+#cover button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 30px rgba(255, 51, 102, 0.6);
+}
+
+/* Romantic Quote */
+.cover-quote {
+  display: block;
+  margin-top: 15px;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #f0f0f0;
+  opacity: 0;
+  animation: fadeInUp 1s 0.9s forwards;
+}
+
+/* Fade In Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apple devices (iPhones, iPads, MacBooks with Retina) */
+/* Targets devices with -webkit-device-pixel-ratio */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min-device-pixel-ratio: 1.5) {
+  /* Adjust font sizes, layout, spacing, etc. for Apple retina and high-res screens */
+
+  body {
+    font-size: 18px; /* example increase font size */
+  }
+
+  #cover .magazine-title {
+    font-size: 4rem !important;
+  }
+
+  #cover .magazine-subtitle {
+    font-size: 1.75rem !important;
+  }
+
+  button {
+    padding: 16px 36px !important;
+    font-size: 20px !important;
+  }
+
+  /* Example: fix video size */
+  #cover-bg-video {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Add more Apple-specific tweaks here */
+}

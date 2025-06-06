@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moments We’ll Never Forget</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: #fff9f9;
+      font-family: 'Playfair Display', serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-family: 'Great Vibes', cursive;
+      color: #e91e63;
+      text-align: center;
+    }
+
+    .magazine-layout {
+      max-width: 800px;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      z-index: 2;
+      position: relative;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .photo-grid img,
+    .photo-grid video {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .photo-grid img:hover,
+    .photo-grid video:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+
+    ul.captions {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 1rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    ul.captions li {
+      font-style: italic;
+      color: #555;
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.2rem;
+    }
+
+    ul.captions li::before {
+      content: "💭";
+      position: absolute;
+      left: 0;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 0.8rem 1.6rem;
+      font-size: 1rem;
+      background-color: #e91e63;
+      border: none;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      position: relative;
+      z-index: 2;
+      align-self: center;
+    }
+
+    button:hover {
+      background-color: #d81b60;
+    }
+
+    /* Fireworks canvas */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    /* Media query for all iPhone screens */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 812px) 
+  and (-webkit-device-pixel-ratio: 2) {
+  
+  /* Example adjustments for iPhones */
+  body {
+    padding: 1rem;
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .magazine-layout {
+    padding: 1rem;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: none;
+  }
+
+  .photo-grid img,
+  .photo-grid video {
+    height: 90px;
+    border-radius: 10px;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Background music -->
+  <audio id="bg-music" autoplay loop muted>
+    <source src="love-romantic-hopeful-music-333017.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Fireworks canvas -->
+  <canvas id="fireworks"></canvas>
+
+  <!-- Moments Page -->
+  <section id="moments" class="magazine-page">
+    <h2>Moments I’ll Never Forget</h2>
+    <div class="magazine-layout">
+
+      <!-- Photo Grid -->
+      <div class="photo-grid">
+        <video src="49ACE78D-FE91-46E0-A2CE-C67F007675E0.MOV" autoplay muted loop playsinline></video>
+        <video src="E18582A8-6448-4746-A5F8-4C04CEE591B3.MOV" autoplay muted loop playsinline></video>
+        <video src="A508D307-BC62-49EF-9AC1-A4486BE56C10.MOV" autoplay muted loop playsinline></video>
+        <video src="DBBB15B7-BE05-4F72-8FD5-E47F822C4DB8.MOV" autoplay muted loop playsinline></video>
+      </div>
+
+      <p>It’s in the little things — your voice notes, the way you laugh, your random rants...<br />
+         Those tiny pieces of you became my favorite parts of every day.</p>
+
+      <p>These are some of the moments that still make me smile:</p>
+      
+      <ul class="captions">
+        <li>“That laugh? Saved in my heart forever.”</li>
+        <li>“Still smiling at this moment.”</li>
+        <li>“You didn’t even know how beautiful you looked here.”</li>
+      </ul>
+    </div>
+    
+    <button onclick="handleNext()">Next ➡️</button>
+  </section>
+
+  <script>
+    // Fireworks setup
+    const canvas = document.getElementById("fireworks");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const particles = [];
+
+    function createExplosion(x, y) {
+      const colors = ['#ff3cac', '#ffc93c', '#6effd3', '#4d4ae8', '#ff6b81'];
+      for (let i = 0; i < 50; i++) {
+        particles.push({
+          x,
+          y,
+          radius: Math.random() * 3 + 1,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          speedX: Math.random() * 6 - 3,
+          speedY: Math.random() * 6 - 3,
+          alpha: 1
+        });
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, i) => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        p.alpha -= 0.01;
+        if (p.alpha <= 0) {
+          particles.splice(i, 1);
+        } else {
+          ctx.globalAlpha = p.alpha;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+        }
+      });
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // Resize canvas on window resize
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // Background music controls - unmute on first click anywhere
+    window.addEventListener('click', () => {
+      const music = document.getElementById('bg-music');
+      if (music.muted) {
+        music.muted = false;
+        music.volume = 0.1; // low volume for romance vibe
+        music.play();
+      }
+    }, { once: true });
+
+    // Fireworks launch and navigate next
+    function handleNext() {
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          createExplosion(Math.random() * window.innerWidth, Math.random() * window.innerHeight);
+        }, i * 400);
+      }
+      setTimeout(() => {
+        window.location.href = 'gallery.html';
+      }, 2200);
+    }
+  </script>
+
+</body>
+</html>

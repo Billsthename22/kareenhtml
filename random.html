@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Random Things You Say</title>
+  <style>
+    /* Background gradient and page style */
+    body {
+      background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 2rem 1rem;
+      max-width: 600px;
+      margin: 3rem auto;
+      color: #333;
+      line-height: 1.6;
+      box-sizing: border-box;
+      overflow-x: hidden;
+    }
+
+    /* Heading styling */
+    h1 {
+      text-align: center;
+      color: #d6336c;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      font-size: 2.4rem;
+      text-shadow: 0 1px 3px rgba(214, 51, 108, 0.6);
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 0.2s;
+    }
+
+    /* Styled ordered list container */
+    ol {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 8px 20px rgba(214, 51, 108, 0.2);
+      counter-reset: item;
+      list-style: none;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 0.5s;
+    }
+
+    /* List items styling */
+    ol li {
+      position: relative;
+      margin-bottom: 1rem;
+      font-size: 1.15rem;
+      padding-left: 3.2rem;
+      cursor: default;
+      transition: color 0.3s ease;
+      opacity: 0;
+      transform: translateX(-20px);
+      animation: slideIn 0.5s ease forwards;
+    }
+
+    /* Animate each li with delay */
+    ol li:nth-child(1) { animation-delay: 0.7s; }
+    ol li:nth-child(2) { animation-delay: 0.8s; }
+    ol li:nth-child(3) { animation-delay: 0.9s; }
+    ol li:nth-child(4) { animation-delay: 1s; }
+    ol li:nth-child(5) { animation-delay: 1.1s; }
+    ol li:nth-child(6) { animation-delay: 1.2s; }
+    ol li:nth-child(7) { animation-delay: 1.3s; }
+    ol li:nth-child(8) { animation-delay: 1.4s; }
+    ol li:nth-child(9) { animation-delay: 1.5s; }
+    ol li:nth-child(10) { animation-delay: 1.6s; }
+    ol li:nth-child(11) { animation-delay: 1.7s; }
+    ol li:nth-child(12) { animation-delay: 1.8s; }
+    ol li:nth-child(13) { animation-delay: 1.9s; }
+    ol li:nth-child(14) { animation-delay: 2s; }
+    ol li:nth-child(15) { animation-delay: 2.1s; }
+    ol li:nth-child(16) { animation-delay: 2.2s; }
+    ol li:nth-child(17) { animation-delay: 2.3s; }
+    ol li:nth-child(18) { animation-delay: 2.4s; }
+    ol li:nth-child(19) { animation-delay: 2.5s; }
+    ol li:nth-child(20) { animation-delay: 2.6s; }
+
+    /* Custom numbers with circles */
+    ol li::before {
+      counter-increment: item;
+      content: counter(item);
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #d6336c;
+      color: white;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(214, 51, 108, 0.4);
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    /* Hover effect on list items */
+    ol li:hover {
+      color: #d6336c;
+      background-color: #fde4ec;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(214, 51, 108, 0.25);
+      transition: all 0.3s ease;
+    }
+    ol li:hover::before {
+      background-color: #a32957;
+      box-shadow: 0 4px 14px rgba(163, 41, 87, 0.6);
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem 1rem;
+        max-width: 100%;
+        margin: 2rem auto;
+      }
+      ol {
+        padding: 1.5rem 2rem;
+      }
+      ol li {
+        font-size: 1rem;
+        padding-left: 2.8rem;
+      }
+      ol li::before {
+        width: 2rem;
+        height: 2rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Button styling */
+    button {
+      display: block;
+      margin: 2rem auto 0 auto;
+      background-color: #d6336c;
+      color: white;
+      border: none;
+      padding: 0.8rem 2.5rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 30px;
+      box-shadow: 0 6px 12px rgba(214, 51, 108, 0.5);
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      user-select: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    button:hover {
+      background-color: #a32957;
+      box-shadow: 0 8px 16px rgba(163, 41, 87, 0.7);
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 8px rgba(163, 41, 87, 0.5);
+    }
+
+    /* Sparkle effect for button */
+    button::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 20%, transparent 60%);
+      animation: sparkle 3s infinite;
+      pointer-events: none;
+      z-index: 0;
+      transform-origin: center;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes sparkle {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(45deg) scale(1.1); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background music -->
+  <audio id="bg-music" autoplay loop muted>
+    <!-- Replace with your own romantic background music file -->
+    <source src="love-romantic-hopeful-music-333017.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <h1>Random Things You Say</h1>
+  <ol>
+    <li>I’m going through a lot.</li>
+    <li>Oh God, why?</li>
+    <li>This one is just a very foolish person.</li>
+    <li>I think I need a very big cake all to myself, red velvet and chocolate to be precise.</li>
+    <li>Do you know that.....</li>
+    <li>The interesting thing in all of this is that...</li>
+    <li>There’s no sense in this thing.</li>
+    <li>Make it make sense abeg.</li>
+    <li>Let me go and think about my life abeg.</li>
+    <li>It’s not me and them that would be doing all that rubbish.</li>
+    <li>This one just has plenty drama.</li>
+    <li>They are getting on my nerves and I’m just keeping calm.</li>
+    <li>God abbeeeeeeeeggggggggg.</li>
+    <li>Guess What?</li>
+    <li>That’s your own business sha.</li>
+    <li>I feel like drinking something sweet.</li>
+    <li>Nobody can stress me abeg.</li>
+    <li>It’s village people that is doing that one.</li>
+    <li>Me, I don’t know.</li>
+    <li>Enjoy or Goodluck.</li>
+  </ol>
+
+  <button onclick="location.href='letter.html'">next page</button>
+
+  <script>
+    // Background music controls - unmute on first click anywhere
+    window.addEventListener('click', () => {
+      const music = document.getElementById('bg-music');
+      if (music.muted) {
+        music.muted = false;
+        music.volume = 0.1; // low volume for romance vibe
+        music.play();
+      }
+    }, { once: true });
+  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Getting to Know You</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: #fff0f4;
+      font-family: 'Playfair Display', serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #4a2e2b;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-family: 'Great Vibes', cursive;
+      color: #d6336c;
+    }
+
+    blockquote {
+      background: #ffffff;
+      padding: 2rem;
+      border-left: 6px solid #ff6b81;
+      border-radius: 15px;
+      font-size: 1.3rem;
+      line-height: 1.6;
+      max-width: 700px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      color: #4a2e2b;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 0.8rem 1.6rem;
+      font-size: 1rem;
+      background-color: #d6336c;
+      border: none;
+      color: white;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #b3244f;
+      transform: scale(1.05);
+    }
+
+    /* iPhone-specific media query */
+    @media only screen and (min-device-width: 320px) and (max-device-width: 480px)
+      and (-webkit-min-device-pixel-ratio: 2) {
+      
+      body {
+        padding: 1rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+      }
+
+      blockquote {
+        font-size: 1rem;
+        padding: 1.2rem;
+        max-width: 90vw;
+      }
+
+      button {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+        margin-top: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section id="know-you" class="magazine-page">
+    <h2>Getting to Know You</h2>
+    <blockquote>
+      “Every conversation with you felt like unwrapping a gift: layer after layer, revealing the most genuine, kind-hearted soul.<br><br>
+      Your smile, your thoughts, your quirks… everything about you drew me in deeper. And I knew, this wasn’t ordinary. This was something rare.”
+    </blockquote>
+    <button onclick="window.location.href='moments.html'">Next ➡️</button>
+  </section>
+
+</body>
+</html>

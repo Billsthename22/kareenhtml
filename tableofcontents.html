@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Table of Contents</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #fdf6f8;
+      color: #333;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .magazine-page {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .contents-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contents-list li {
+      background: #fff;
+      border: 2px solid #ffccd5;
+      padding: 1.2rem 2rem;
+      border-radius: 12px;
+      margin: 15px 0;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      animation: fadeInUp 0.6s ease both;
+    }
+
+    .contents-list li:hover {
+      background-color: #fff0f3;
+      transform: scale(1.03);
+    }
+
+    .contents-list .icon {
+      font-size: 1.6rem;
+      margin-right: 1rem;
+    }
+
+    .contents-list .text {
+      font-size: 1.3rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hearts-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff6b81;
+      font-size: 1.5rem;
+      animation: floatHeart 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ff69b4, #ffffff);
+      pointer-events: none;
+      opacity: 0.8;
+      animation: sparkleFade 1s ease-out forwards;
+    }
+
+    @keyframes sparkleFade {
+      0% {
+        transform: scale(1.5);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0);
+        opacity: 0;
+      }
+    }
+
+    /* Media Query: Small devices (phones, 0–600px) */
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .contents-list li {
+        padding: 1rem 1.5rem;
+      }
+
+      .contents-list .icon {
+        font-size: 1.4rem;
+        margin-right: 0.8rem;
+      }
+
+      .contents-list .text {
+        font-size: 1.1rem;
+      }
+
+      .heart {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* Media Query: Medium devices (tablets, 601px–900px) */
+    @media (min-width: 601px) and (max-width: 900px) {
+      h2 {
+        font-size: 2.3rem;
+      }
+
+      .contents-list .text {
+        font-size: 1.2rem;
+      }
+
+      .contents-list .icon {
+        font-size: 1.5rem;
+      }
+
+      .contents-list li {
+        padding: 1.2rem 2rem;
+      }
+    }
+
+    /* Retina or High DPI Devices */
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+           only screen and (min-device-pixel-ratio: 1.5) {
+      body {
+        font-size: 18px;
+        padding: 2.5rem;
+      }
+
+      h2 {
+        font-size: 3rem;
+      }
+
+      .contents-list li {
+        padding: 1.5rem 2.5rem;
+      }
+
+      .contents-list .icon {
+        font-size: 1.8rem;
+        margin-right: 1.25rem;
+      }
+
+      .contents-list .text {
+        font-size: 1.5rem;
+      }
+
+      .heart {
+        font-size: 1.8rem;
+      }
+
+      .sparkle {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating hearts -->
+  <div class="hearts-container">
+    <span class="heart" style="left: 10%; animation-delay: 0s;">❤️</span>
+    <span class="heart" style="left: 25%; animation-delay: 2s;">💕</span>
+    <span class="heart" style="left: 40%; animation-delay: 1s;">💖</span>
+    <span class="heart" style="left: 60%; animation-delay: 3s;">❤️</span>
+    <span class="heart" style="left: 75%; animation-delay: 1.5s;">💞</span>
+    <span class="heart" style="left: 85%; animation-delay: 2.5s;">💘</span>
+    <span class="heart" style="left: 5%; animation-delay: 1s;">💕</span>
+    <span class="heart" style="left: 50%; animation-delay: 2s;">❤️</span>
+    <span class="heart" style="left: 70%; animation-delay: 0.5s;">💖</span>
+    <span class="heart" style="left: 30%; animation-delay: 3s;">💘</span>
+  </div>
+
+  <!-- Table of Contents -->
+  <section id="contents" class="magazine-page">
+    <h2>Table of Contents</h2>
+    <ul class="contents-list">
+      <li onclick="navigateTo('chapter.html')">
+        <span class="icon">📖</span>
+        <span class="text">1.My little confession</span>
+      </li>
+      <li onclick="navigateTo('knowyou.html')">
+        <span class="icon">💬</span>
+        <span class="text">2. Getting to Know You</span>
+      </li>
+      <li onclick="navigateTo('moments.html')">
+        <span class="icon">🕰️</span>
+        <span class="text">3. Moments I’ll Never Forget</span>
+      </li>
+      <li onclick="navigateTo('gallery.html')">
+        <span class="icon">📸</span>
+        <span class="text">4. Your Smile in Pictures</span>
+      </li>
+      <li onclick="navigateTo('playlist.html')">
+        <span class="icon">🎵</span>
+        <span class="text">5. Random things </span>
+      </li>
+      <li onclick="navigateTo('letter.html')">
+        <span class="icon">💌</span>
+        <span class="text">6. A Letter to My Love</span>
+      </li>
+      <li onclick="navigateTo('thequestion.html')">
+        <span class="icon">💍</span>
+        <span class="text">7.My Question 😏</span>
+      </li>
+    </ul>
+  </section>
+
+  <script>
+    function navigateTo(page) {
+      window.location.href = page;
+    }
+
+    document.addEventListener("mousemove", (e) => {
+      const sparkle = document.createElement("div");
+      sparkle.className = "sparkle";
+      sparkle.style.left = `${e.clientX}px`;
+      sparkle.style.top = `${e.clientY}px`;
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 1000);
+    });
+  </script>
+
+</body>
+</html>

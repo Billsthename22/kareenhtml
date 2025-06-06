@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A Letter from My Heart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: #fffafc;
+      font-family: 'Playfair Display', serif;
+      color: #4a2e2b;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .letter-container {
+      max-width: 700px;
+      background: #ffffff;
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      border: 2px solid #ffd6e0;
+      margin-bottom: 2rem;
+    }
+
+    .letter-container h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #d6336c;
+    }
+
+    .letter-container p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .highlight {
+      font-style: italic;
+      font-weight: bold;
+      color: #b30059;
+    }
+
+    .next-button {
+      background-color: #ff6699;
+      color: white;
+      font-size: 1rem;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .next-button:hover {
+      background-color: #ff3366;
+      transform: scale(1.05);
+    }
+
+    /* iPhone-specific media query */
+    @media only screen and (min-device-width: 320px) and (max-device-width: 480px)
+      and (-webkit-min-device-pixel-ratio: 2) {
+
+      body {
+        padding: 1rem;
+      }
+
+      .letter-container {
+        padding: 1.5rem;
+        max-width: 90vw;
+        margin-bottom: 1.5rem;
+      }
+
+      .letter-container h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+
+      .letter-container p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+      }
+
+      .next-button {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="letter-container">
+    <h1>💌 A Letter from My Heart</h1>
+    <p>Dear Keren,</p>
+    <p>I didn’t sit down to write a perfect letter. I just wanted to say what’s been on my heart.</p>
+    <p>From the very first time we talked, something felt... different. I don’t know if it was your laugh, the way you make even silence feel comfortable, or the way you make me think deeper—about myself, about love, about life.</p>
+    <p>Getting to know you has been one of the sweetest surprises I didn’t see coming. You’ve made me smile when I didn’t even realize I needed it. You’ve become a part of my routine, a part of my thoughts, a part of my peace.</p>
+    <p>You may not realize it, but you’ve lit up parts of me I hadn’t seen in a long time.</p>
+    <p>And slowly—without warning—you became someone I care about more than I ever expected.</p>
+    <p>This page, this letter, this whole space is for one simple reason: To let you know you’re special to me… <span class="highlight">incredibly special.</span></p>
+    <p>So if you ever wondered how I feel—<br>This is it, all of it. From my heart to yours. ❤️</p>
+  </div>
+
+  <a href="thequestion.html">
+    <button class="next-button">Move to Next Page →</button>
+  </a>
+
+  <audio id="bg-music" autoplay loop muted>
+    <source src="love-romantic-hopeful-music-333017.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // Unmute on first user interaction to comply with browser autoplay policies
+    window.addEventListener('click', () => {
+      const music = document.getElementById('bg-music');
+      music.muted = false;
+      music.play();
+    }, { once: true });
+  </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Memory Portal</title>
+
+  <!-- AOS (Animate on Scroll) Library -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a001a;
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1rem 10px 2rem 10px;
+      box-sizing: border-box;
+    }
+
+    .portal-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #ffccff, #99004d 60%, #0a001a 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      cursor: pointer;
+    }
+
+    .portal-ring {
+      width: 150px;
+      height: 150px;
+      border: 5px solid #ff66cc;
+      border-radius: 50%;
+      animation: spin 3s linear infinite, pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 20px #ff66cc;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .portal-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-shadow: 0 0 10px #ff99cc;
+    }
+
+    .main-gallery {
+      opacity: 0;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      z-index: 10;
+      transition: opacity 0.5s ease;
+      position: relative;
+    }
+
+    .main-gallery h1 {
+      font-size: 2.5rem;
+      color: #ff99cc;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .media-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+    }
+
+    .media-item {
+      background: #252525;
+      padding: 8px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(255, 105, 180, 0.6);
+      width: 45%;
+      height: 75vh;
+      margin: 10px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .media-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+      z-index: 5;
+    }
+
+    .media-item img,
+    .media-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+      user-select: none;
+    }
+
+    /* Big Play Button Overlay */
+    #playOverlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 102, 204, 0.8);
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 20;
+      box-shadow: 0 0 15px #ff66cc;
+      transition: background 0.3s ease;
+    }
+
+    #playOverlay:hover {
+      background: rgba(255, 102, 204, 1);
+    }
+
+    #playOverlay:before {
+      content: '';
+      display: inline-block;
+      margin-left: 5px;
+      border-style: solid;
+      border-width: 15px 0 15px 25px;
+      border-color: transparent transparent transparent white;
+    }
+
+    @media (max-width: 1024px) {
+      .media-item {
+        width: 70%;
+        height: 70vh;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .media-item {
+        width: 90%;
+        height: 65vh;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .media-item {
+        width: 100%;
+        height: 60vh;
+      }
+    }
+
+    #nextButton {
+      background-color: #ff66cc;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 1.5rem;
+    }
+
+    #nextButton:hover {
+      background-color: #cc3399;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="portal-overlay" id="portal">
+    <div class="portal-ring"></div>
+    <div class="portal-text">Click here...</div>
+  </div>
+
+  <div class="main-gallery" id="gallery">
+    <h1>🎥</h1>
+
+    <div class="media-grid" id="mediaGrid">
+      <div class="media-item" id="videoContainer">
+        <video id="memoryVideo" src="8274ddfb2a4c4b55baeedd1ca974710f.MOV" controls></video>
+        <div id="playOverlay" title="Click to play with sound"></div>
+      </div>
+    </div>
+
+    <button id="nextButton">Next page</button>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+
+    // Show gallery on portal click, instead of timeout
+    document.getElementById('portal').addEventListener('click', () => {
+      document.getElementById('portal').style.display = 'none';
+      const gallery = document.getElementById('gallery');
+      gallery.style.opacity = 1;
+    });
+
+    const video = document.getElementById('memoryVideo');
+    video.autoplay = false; // ensure no autoplay, user clicks play
+
+    const playOverlay = document.getElementById('playOverlay');
+
+    playOverlay.addEventListener('click', () => {
+      video.play()
+        .then(() => {
+          playOverlay.style.display = 'none';
+        })
+        .catch(err => {
+          console.warn('Playback failed:', err);
+          alert('Playback failed. Please interact with the video directly.');
+        });
+    });
+
+    // Redirect to random.html when next button clicked
+    document.getElementById('nextButton').addEventListener('click', () => {
+      window.location.href = 'random.html';
+    });
+  </script>
+</body>
+</html>
